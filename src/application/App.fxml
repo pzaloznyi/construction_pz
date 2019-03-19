@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -7,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AppController">
+<VBox prefHeight="466.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AppController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -22,7 +25,7 @@
           <items>
             <MenuItem mnemonicParsing="false" onAction="#sort" text="%sort" />
             <MenuItem mnemonicParsing="false" onAction="#printPrices" text="%printprices" />
-            <MenuItem mnemonicParsing="false" onAction="#printProducts" text="%printproducts" />
+            <MenuItem mnemonicParsing="false" onAction="#printProducts" text="%printshoes" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" onAction="#showMessage" text="%help">
@@ -31,7 +34,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="368.0" prefWidth="281.0" VBox.vgrow="ALWAYS">
          <children>
-            <ListView fx:id="list" layoutX="14.0" layoutY="14.0" prefHeight="335.0" prefWidth="224.0" />
+            <ListView fx:id="list" layoutX="14.0" layoutY="14.0" prefHeight="416.0" prefWidth="307.0" />
          </children>
     </AnchorPane>
   </children>

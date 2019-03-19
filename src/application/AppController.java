@@ -23,6 +23,7 @@ import logging.MyFormatter;
 import logging.MyHandler;
 import model.Product;
 import model.Shoe;
+import model.ShoeType;
 
 public class AppController implements Initializable {
 
@@ -80,12 +81,12 @@ public class AppController implements Initializable {
 	}
 
 	@FXML
-	private void printPrices() {
+	private void printProducts() {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
 		for (Product product : database) {
 			if (product.isLessThan(30)) {
-				items.add(String.valueOf(product.getName() + ": " + product.getPrice() + " UAH"));
+				items.add(String.valueOf(product.getName() + " (" + product.getProductType() +")" + ": " + product.getPrice() + " UAH"));
 			}
 		}
 
@@ -95,12 +96,17 @@ public class AppController implements Initializable {
 	}
 
 	@FXML
-	private void printProducts() {
+	private void printProductsLt30(){
+
+	}
+
+	@FXML
+	private void printAutumnDiscount() {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
 		for (Product product : database) {
 			if (product.isMoreThan(0)) {
-				items.add(product.getName() + " (" + product.getPrice() + "UAH )");
+				items.add(product.getName() + " (Price: " + product.getPrice() + "UAH, Discount: " + product.getDiscount() + ")");
 			}
 		}
 
@@ -121,9 +127,9 @@ public class AppController implements Initializable {
 		for (int i = 0; i < 100; i++) {
 			Random r = new Random();
 			String shoe = shoes[r.nextInt(shoes.length)];
-			Product product = new Shoe(shoe, r.nextInt(10));
+			Product product = new Shoe(shoe, ShoeType.values()[r.nextInt(4)], r.nextInt(99) + 1, r.nextInt(6) * 5);
 			database.add(product);
-			logger.log(Level.INFO, "Добавлен продукт: " + product.getName() + "(" + product.getPrice() + ")");
+			logger.log(Level.INFO, "Добавлен продукт: " + product.getName() + "(" + product.getPrice() + " UAH)");
 		}
 		logger.log(Level.INFO, "Генерация данных завершена.");
 	}
