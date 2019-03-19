@@ -21,7 +21,8 @@ import javafx.scene.control.ListView;
 import logging.MyFilter;
 import logging.MyFormatter;
 import logging.MyHandler;
-import model.AccountOwner;
+import model.Product;
+import model.Shoe;
 
 public class AppController implements Initializable {
 
@@ -30,7 +31,7 @@ public class AppController implements Initializable {
 	@FXML
 	private ListView<String> list;
 
-	private ArrayList<AccountOwner> database = new ArrayList<>();
+	private ArrayList<Product> database = new ArrayList<>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -79,12 +80,12 @@ public class AppController implements Initializable {
 	}
 
 	@FXML
-	private void printDeposits() {
+	private void printPrices() {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
-		for (AccountOwner owner : database) {
-			if (owner.getDeposit().isMoreThan(20_000)) {
-				items.add(String.valueOf(owner.getDeposit().getAmount() + " UAH"));
+		for (Product product : database) {
+			if (product.isLessThan(30)) {
+				items.add(String.valueOf(product.getName() + ": " + product.getPrice() + " UAH"));
 			}
 		}
 
@@ -94,12 +95,12 @@ public class AppController implements Initializable {
 	}
 
 	@FXML
-	private void printOwners() {
+	private void printProducts() {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
-		for (AccountOwner owner : database) {
-			if (owner.getDeposit().isMoreThan(0)) {
-				items.add(owner.getName() + "(" + owner.getDeposit() + ")");
+		for (Product product : database) {
+			if (product.isMoreThan(0)) {
+				items.add(product.getName() + " (" + product.getPrice() + "UAH )");
 			}
 		}
 
@@ -110,23 +111,19 @@ public class AppController implements Initializable {
 
 	@FXML
 	private void showMessage() {
-		JOptionPane.showMessageDialog(null, "Вiкно допомога");
+		JOptionPane.showMessageDialog(null, "Окно помощи");
 	}
 
 	private void generate() {
 		logger.log(Level.INFO, "Генерация данных началась.");
-		String[] firstnames = { "Alex", "John", "David", "Dmitriy", "Ivan", "Smith", "Eva", "Emily", "Kate" };
-		String[] lastnames = { "Black", "Brown", "Adams", "Cole", "Slithy", "Dove" };
+		String[] shoes = { "Sleeper", "Wellington Boots", "Mules", "Heels", "Court Shoes", "Lace Ups", "Canvas Shoes", "Flip Flops", "Loafers" };
 
 		for (int i = 0; i < 100; i++) {
 			Random r = new Random();
-			String firstname = firstnames[r.nextInt(firstnames.length)];
-			String lastname = lastnames[r.nextInt(lastnames.length)];
-			double creditAmount = r.nextInt(10) * 10000;
-			double depositAmount = r.nextInt(10) * 10000;
-			AccountOwner accountOwner = new AccountOwner(depositAmount, firstname, lastname);
-			database.add(accountOwner);
-			logger.log(Level.INFO, "Добавлен пользователь: " + accountOwner.getName() + "(" + accountOwner.getDeposit() + ")");
+			String shoe = shoes[r.nextInt(shoes.length)];
+			Product product = new Shoe(shoe, r.nextInt(10));
+			database.add(product);
+			logger.log(Level.INFO, "Добавлен продукт: " + product.getName() + "(" + product.getPrice() + ")");
 		}
 		logger.log(Level.INFO, "Генерация данных завершена.");
 	}
