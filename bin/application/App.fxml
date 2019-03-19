@@ -21,7 +21,6 @@
         <Menu mnemonicParsing="false" text="%selection">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#sort" text="%sort" />
-            <MenuItem mnemonicParsing="false" onAction="#printCredits" text="%printcredits" />
             <MenuItem mnemonicParsing="false" onAction="#printDeposits" text="%printdeposits" />
             <MenuItem mnemonicParsing="false" onAction="#printOwners" text="%printowners" />
           </items>

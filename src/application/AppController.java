@@ -79,21 +79,6 @@ public class AppController implements Initializable {
 	}
 
 	@FXML
-	private void printCredits() {
-		ObservableList<String> items = FXCollections.observableArrayList();
-
-		for (AccountOwner owner : database) {
-			if (owner.getCredit().isMoreThan(50_000)) {
-				items.add(String.valueOf(owner.getCredit().getAmount() + " UAH"));
-			}
-		}
-
-		list.setItems(items);
-
-		logger.log(Level.INFO, "Вывод всех кредитов");
-	}
-
-	@FXML
 	private void printDeposits() {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -113,8 +98,8 @@ public class AppController implements Initializable {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
 		for (AccountOwner owner : database) {
-			if (owner.getDeposit().isMoreThan(0) && owner.getCredit().isMoreThan(0)) {
-				items.add(owner.getName() + "(" + owner.getDeposit() + "; " + owner.getCredit() + ")");
+			if (owner.getDeposit().isMoreThan(0)) {
+				items.add(owner.getName() + "(" + owner.getDeposit() + ")");
 			}
 		}
 
@@ -139,10 +124,9 @@ public class AppController implements Initializable {
 			String lastname = lastnames[r.nextInt(lastnames.length)];
 			double creditAmount = r.nextInt(10) * 10000;
 			double depositAmount = r.nextInt(10) * 10000;
-			AccountOwner accountOwner = new AccountOwner(creditAmount, depositAmount, firstname, lastname);
+			AccountOwner accountOwner = new AccountOwner(depositAmount, firstname, lastname);
 			database.add(accountOwner);
-			logger.log(Level.INFO, "Добавлен пользователь: " + accountOwner.getName() + "(" + accountOwner.getDeposit()
-					+ "; " + accountOwner.getCredit() + ")");
+			logger.log(Level.INFO, "Добавлен пользователь: " + accountOwner.getName() + "(" + accountOwner.getDeposit() + ")");
 		}
 		logger.log(Level.INFO, "Генерация данных завершена.");
 	}
