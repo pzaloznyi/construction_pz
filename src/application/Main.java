@@ -22,7 +22,7 @@ public class Main extends Application {
 			VBox root = FXMLLoader.load(getClass().getResource("App.fxml"), resources);
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle(resources.getString("bank"));
+			primaryStage.setTitle(resources.getString("product"));
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
