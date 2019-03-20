@@ -32,6 +32,3 @@ public class Product {
     }
 }
 
-enum ProductType {
-    Shoe
-}

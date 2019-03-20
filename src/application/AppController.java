@@ -97,7 +97,17 @@ public class AppController implements Initializable {
 
 	@FXML
 	private void printProductsLt30(){
+		ObservableList<String> items = FXCollections.observableArrayList();
 
+		for (Product product : database) {
+			if (product.isLessThan(30)) {
+				items.add(product.getName() + " (Price: " + product.getPrice() + "UAH, Discount: " + product.getDiscount() + ")");
+			}
+		}
+
+		list.setItems(items);
+
+		logger.log(Level.INFO, "Вывод всех товаров");
 	}
 
 	@FXML
@@ -105,14 +115,14 @@ public class AppController implements Initializable {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
 		for (Product product : database) {
-			if (product.isMoreThan(0)) {
+			if (product instanceof Shoe && ((Shoe) product).getType() == ShoeType.Summer && product.getDiscount() > 0) {
 				items.add(product.getName() + " (Price: " + product.getPrice() + "UAH, Discount: " + product.getDiscount() + ")");
 			}
 		}
 
 		list.setItems(items);
 
-		logger.log(Level.INFO, "Вывод всех владельцев");
+		logger.log(Level.INFO, "Вывод всех товаров");
 	}
 
 	@FXML

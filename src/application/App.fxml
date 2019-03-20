@@ -24,8 +24,9 @@
         <Menu mnemonicParsing="false" text="%selection">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#sort" text="%sort" />
-            <MenuItem mnemonicParsing="false" onAction="#printPrices" text="%printprices" />
-            <MenuItem mnemonicParsing="false" onAction="#printProducts" text="%printshoes" />
+            <MenuItem mnemonicParsing="false" onAction="#printProducts" text="%printproducts" />
+            <MenuItem mnemonicParsing="false" onAction="#printProductsLt30" text="%printproductslt30" />
+            <MenuItem mnemonicParsing="false" onAction="#printAutumnDiscount" text="%printautumndiscount" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" onAction="#showMessage" text="%help">
